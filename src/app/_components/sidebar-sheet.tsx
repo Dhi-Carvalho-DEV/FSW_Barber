@@ -14,12 +14,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
-import { signIn, useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react"
 import { Avatar, AvatarImage } from "./ui/avatar"
 
 const SidebarSheet = () => {
   const { data } = useSession()
   const handleLoginWithGoogleClick = () => signIn("google")
+  const handleLogoutClick = () => signOut()
   return (
     <SheetContent className="overflow-y-auto">
       <SheetHeader>
@@ -107,7 +108,11 @@ const SidebarSheet = () => {
       </div>
 
       <div className="flex flex-col gap-2 py-5">
-        <Button variant="ghost" className="justify-start gap-2">
+        <Button
+          variant="ghost"
+          className="justify-start gap-2"
+          onClick={handleLogoutClick}
+        >
           <LogOutIcon size={18} />
           Sair da conta
         </Button>
